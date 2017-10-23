@@ -9,6 +9,7 @@ const startLocation = 4,
 
 let map = [],
   images = [],
+  blockedPathMessages = [],
   playerInput = '',
   gameMessage = '',
   action = '',
@@ -19,6 +20,9 @@ map = createMap();
 
 // Create images
 images = createImages();
+
+// Create blocked path messages
+blockedPathMessages = createBlockedPathMessages();
 
 // Display the player's location
 output.innerHTML = map[mapLocation];
@@ -53,16 +57,20 @@ function playGame() {
   // Choose the correct action
   switch (action) {
     case 'north':
-      mapLocation -= 3;
+      if (mapLocation >= 3) mapLocation -= 3;
+      else gameMessage = blockedPathMessages[mapLocation];
       break;
     case 'east':
-      mapLocation += 1;
+      if (mapLocation % 3 !== 2) mapLocation += 1;
+      else gameMessage = blockedPathMessages[mapLocation];
       break;
     case 'south':
-      mapLocation += 3;
+      if (mapLocation < 6) mapLocation += 3;
+      else gameMessage = blockedPathMessages[mapLocation];
       break;
     case 'west':
-      mapLocation -= 1;
+      if (mapLocation % 3 !== 0) mapLocation -= 1;
+      else gameMessage = blockedPathMessages[mapLocation];
       break;
     default:
       gameMessage = `I don't understand that.`;
