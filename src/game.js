@@ -4,24 +4,21 @@ const startLocation = 4,
   output = document.querySelector('#output'),
   input = document.querySelector('#input'),
   button = document.querySelector('button'),
+  image = document.querySelector('img'),
   actionsIKnow = ['north', 'east', 'south', 'west'];
 
 let map = [],
+  images = [],
   playerInput = '',
   gameMessage = '',
   action = '',
   mapLocation = startLocation;
 
 // Create the map
-map.push('An old stone keep.');
-map.push('A deep well.');
-map.push('A sunny glade');
-map.push('A sleeping dragon.');
-map.push('A narrow pathway.');
-map.push('An ancient gate.');
-map.push('The edge of a river.');
-map.push('A lonely wooden bench.');
-map.push('An isolated cottage. Faint music comes from inside.');
+map = createMap();
+
+// Create images
+images = createImages();
 
 // Display the player's location
 output.innerHTML = map[mapLocation];
@@ -78,6 +75,7 @@ function playGame() {
 function render() {
   // Render location
   output.innerHTML = map[mapLocation];
+  image.src = `assets/${images[mapLocation]}`;
 
   // Display message
   output.innerHTML += `<br><em>${gameMessage}</em>`;
