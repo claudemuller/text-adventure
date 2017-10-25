@@ -1,2 +1,2 @@
 # text-adventure
-Text-based JavaScript adventure
+Text-based adventure exercise
